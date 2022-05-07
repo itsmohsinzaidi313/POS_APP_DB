@@ -1,0 +1,1 @@
+﻿CREATE proc [dbo].[uspGetCloseTables] @TiltId as int as select t.tables from tables t inner join TableTiltAssign tt on  t.id = tt.tableid where tt.Tiltid = @TiltId and t.table_status = 'Close'

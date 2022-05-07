@@ -1,0 +1,1 @@
+﻿CREATE Proc [dbo].[GetAvgRateOfItemByItemId]@ItemId as int, @SId as int as Select isnull(dbo.uspGetItemAvgRateFunc(@SId,@ItemId,null,null,0),0) as Rate

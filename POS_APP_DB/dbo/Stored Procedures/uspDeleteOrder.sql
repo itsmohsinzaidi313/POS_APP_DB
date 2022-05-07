@@ -1,0 +1,1 @@
+﻿CREATE proc [dbo].[uspDeleteOrder] @OrderKey as int as delete from OrderKot where orderkey = @OrderKey delete from Order_Detail where order_key  = @OrderKey delete from Dine_In_Order where order_key = @OrderKey

@@ -1,0 +1,1 @@
+﻿CREATE proc [dbo].[uspGetOrderDetails] @OrderKey as int as  select od.item_name,od.qty,ok.KotStatus  from Order_detail od inner join orderkot ok on  od.order_key = ok.OrderKey and od.id = ok.OrderDetailId where od.order_key = @OrderKey

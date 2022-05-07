@@ -1,0 +1,1 @@
+﻿CREATE proc [dbo].[UspBindUser] as select id,username from tbl_user

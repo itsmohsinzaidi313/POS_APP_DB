@@ -1,0 +1,1 @@
+﻿CREATE proc [dbo].[uspGetLoginDetails] as select tb.username,tb.pwd,sa.id as CounterId,sa.TiltId,sa.Z_Number, (select waiter_name from waiter where id_ = ut.WaiterId) as Waiter from tbl_user tb  inner join UserTiltAssign ut on tb.id = ut.UserId inner join ShiftAmount sa on ut.TiltId = sa.TiltId where sa.IsActive = 1

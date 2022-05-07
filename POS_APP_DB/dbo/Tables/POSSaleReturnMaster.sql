@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[POSSaleReturnMaster] (
+    [Sid]            INT            IDENTITY (1, 1) NOT NULL,
+    [Date]           DATETIME       NULL,
+    [SRNo]           NVARCHAR (50)  NULL,
+    [OrderKey]       NVARCHAR (50)  NULL,
+    [OrderType]      NVARCHAR (50)  NULL,
+    [Amount]         FLOAT (53)     NULL,
+    [User]           NVARCHAR (50)  NULL,
+    [Tiltid]         INT            NULL,
+    [ShiftNo]        NVARCHAR (50)  NULL,
+    [CounterId]      INT            NULL,
+    [IsComplete]     BIT            CONSTRAINT [DF_POSSaleReturnMaster_IsComplete] DEFAULT ((0)) NULL,
+    [Tax]            FLOAT (53)     CONSTRAINT [DF_POSSaleReturnMaster_Tax] DEFAULT ((0)) NULL,
+    [Discount]       FLOAT (53)     CONSTRAINT [DF_POSSaleReturnMaster_Discount] DEFAULT ((0)) NULL,
+    [SCharges]       FLOAT (53)     CONSTRAINT [DF_POSSaleReturnMaster_SCharges] DEFAULT ((0)) NULL,
+    [ECharges]       FLOAT (53)     CONSTRAINT [DF_POSSaleReturnMaster_ECharges] DEFAULT ((0)) NULL,
+    [Reason]         NVARCHAR (MAX) NULL,
+    [Status]         BIT            DEFAULT ((0)) NOT NULL,
+    [SaleReturnTime] NVARCHAR (50)  NULL,
+    [is_upload]      BIT            DEFAULT ((0)) NOT NULL,
+    [is_update]      BIT            DEFAULT ((0)) NOT NULL,
+    [Date_time]      DATETIME       NULL,
+    [unique_key]     VARCHAR (50)   NULL
+);
+

@@ -1,0 +1,1 @@
+﻿CREATE proc [dbo].[GetPhysicalOrderBalance] @Sid as int as Select i.ItemId,i.Item,u.Unit,u.UId From Item i inner join ItemUnit iu on i.ItemId=iu.ItemId inner join Unit u on iu.PurUnit=u.Uid inner join Subcategory sc on i.SBId = sc.SBId inner join Category c on sc.CId=c.CId where  sc.SubCategory<>'Sub Recipe' order by i.Item

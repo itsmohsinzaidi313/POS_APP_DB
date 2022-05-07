@@ -1,0 +1,13 @@
+﻿
+
+CREATE Proc [dbo].[GetProductionByPRNo]--'PD-0001'
+@PRNO as nvarchar(50)
+as
+Select pd.ItemId,i.Item,u.Unit,pd.UnitId as UId,pd.Qty,pd.RatePerPcs 
+,Cast((Round((select isnull(IssFactor,0) from ItemUnit where ItemId = i.ItemId)/
+(select isnull(PurFactor,0) from ItemUnit where ItemId = i.ItemId),2)) AS DECIMAL (18,2)) as Factor
+from ProductionMaster pm inner join ProductionDetail pd on pm.PRId=pd.PRId
+inner join Item i on i.ItemId=pd.ItemId
+inner join Unit u on u.UId=pd.UnitId
+where pm.PRNo=@PRNO
+

@@ -1,0 +1,40 @@
+﻿CREATE Proc [dbo].[GetInventoryBalanceForButchery]--117
+@SId as int
+as
+Select i.ItemId,i.Item,u.Unit,u.UId,ipl.Parlevel,
+
+Cast(Round((
+(select isnull(IssFactor,0) from ItemUnit where ItemId = i.ItemId)
+*
+ (
+( Select isnull(Sum(Qty),0) from WareHouse_Store where [Type]='Out' and ItemId=i.ItemId and SId=@SId and BUTId>0)
+ -
+( Select isnull(Sum(Qty),0) from WareHouse_Store where [Type]='In' and ItemId=i.ItemId and SId=@SId and BUTRId>0)
+-
+(Select isnull(Sum(WesQty),0) from WareHouse_Store where [Type]='In' and ItemId=i.ItemId and SId=@SId and BUTRId>0))
+
+),2) AS DECIMAL (18,2))as Balance,
+Cast(Round((Select (
+(select isnull(avg(Rate) ,0)from WareHouse_Store where ItemId = i.ItemId and SId=@SId)/
+(select isnull(IssFactor,0) from ItemUnit where ItemId=i.ItemId)
+)
+),2) AS DECIMAL (18,2))as Rate,
+
+Cast((Round((select isnull(IssFactor,0) from ItemUnit where ItemId = i.ItemId)/
+(select isnull(PurFactor,0) from ItemUnit where ItemId = i.ItemId),2)) AS DECIMAL (18,2)) as Factor,
+iu.PurUnit as PurUnitId,(select Unit from Unit where UId = iu.PurUnit) as PurUnit
+From Item i 
+inner join ItemParLevel ipl on i.ItemId=ipl.ItemId
+inner join ItemUnit iu on i.ItemId=iu.ItemId
+--inner join Unit u on iu.PurUnit=u.Uid 
+inner join Unit u on iu.IssUnit=u.Uid 
+inner join Butchery bu on bu.Id=i.[Type] 
+where ipl.BRId=0 and ipl.SId=@SId  and bu.ItemType='Butchery'
+order by i.Item
+
+
+
+
+
+
+

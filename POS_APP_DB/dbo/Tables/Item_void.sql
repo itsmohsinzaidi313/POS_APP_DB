@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[Item_void] (
+    [id]                INT            NOT NULL,
+    [order_key]         NVARCHAR (50)  NULL,
+    [date]              DATETIME       NULL,
+    [z_num]             NVARCHAR (50)  NULL,
+    [operator]          NVARCHAR (50)  NULL,
+    [category]          NVARCHAR (50)  NULL,
+    [item]              NVARCHAR (50)  NULL,
+    [qty]               FLOAT (53)     NULL,
+    [price]             FLOAT (53)     NULL,
+    [server]            NVARCHAR (50)  NULL,
+    [order_type]        NVARCHAR (50)  NULL,
+    [status]            NVARCHAR (50)  NULL,
+    [shift]             NVARCHAR (50)  NULL,
+    [tiltId]            INT            NULL,
+    [CounterId]         INT            NULL,
+    [Reason]            NVARCHAR (MAX) NULL,
+    [Status1]           BIT            DEFAULT ((0)) NOT NULL,
+    [OrderKey_Merege]   NVARCHAR (50)  NULL,
+    [is_upload]         BIT            DEFAULT ((0)) NOT NULL,
+    [is_update]         BIT            DEFAULT ((0)) NOT NULL,
+    [less_after_bill]   BIT            DEFAULT ((0)) NULL,
+    [android_detail_id] INT            DEFAULT ((0)) NULL,
+    [is_print]          INT            DEFAULT ((0)) NULL,
+    [auto_id]           INT            IDENTITY (1, 1) NOT NULL,
+    [od_id]             INT            NULL
+);
+
