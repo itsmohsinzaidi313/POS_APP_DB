@@ -9,7 +9,7 @@ begin
 Select i.InvoiceId,
 --i.InvoiceNo,
 'Advance' as InvoiceNo,
-cpd.Amount as PaidAmount,cpd.CAId,ca.AccName as Account,cpd.[Desc ]as Description
+cpd.Amount as PaidAmount,cpd.CAId
 from  CashPaymentMaster cpm  
 inner join CashPaymentDetail cpd on  cpm.CPId = cpd.CPId
 inner join ChartOfAccount ca on ca.CAId = cpd.CAId
@@ -23,7 +23,7 @@ begin
 Select i.InvoiceId,
 --i.InvoiceNo,
 'Advance' as InvoiceNo,
-cpd.Amount as PaidAmount,cpd.CAId,ca.AccName as Account,cpd.[Desc ]as Description
+cpd.Amount as PaidAmount,cpd.CAId
 from  BankPaymentMaster cpm  
 inner join  BankPaymentDetail cpd on  cpm.BPId = cpd.BPId
 inner join ChartOfAccount ca on ca.CAId = cpd.CAId
